@@ -1,0 +1,6 @@
+spotipy
+telegram
+python-telegram-bot
+black
+pylint
+flake8

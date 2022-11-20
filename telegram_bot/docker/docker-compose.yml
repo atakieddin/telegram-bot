@@ -1,0 +1,15 @@
+services:
+  telegram-bot:
+    image: telegram_bot
+    container_name: telegram_bot
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+    - ..:/workspace
+    env_file:
+      - ../.env
+  
+volumes:
+  workspace:
+    external: true
