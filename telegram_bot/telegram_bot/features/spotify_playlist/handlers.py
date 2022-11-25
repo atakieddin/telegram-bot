@@ -3,6 +3,7 @@ import os
 import json
 import logging
 import spotipy
+import random
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.cache_handler import MemoryCacheHandler
 
@@ -32,3 +33,26 @@ def add_song(update, _):
     song = update.message.text.split("/add ")[1:]
     spotify.playlist_add_items(os.environ["PLAYLIST_ID"], song)
     update.message.reply_text("Added song to playlist!")
+
+def show_playlist(update, _):
+    playlist = "https://open.spotify.com/playlist/3ptj0dQmLvYYgMf81A19kl?si=48b5ad8268e1435f"
+    update.message.reply_text("This is the playlist: " + playlist)
+
+def random_song(update, _):
+    msgs = [
+        "Why not listen to %s!",
+        "Give %s a try!",
+        "The oracle suggests %s",
+        "All signs point to %s",
+        "There's only one choice: %s",
+        "Let's go with %s",
+        "I flipped a 500 sided coin, and this was chosen: %s",
+        "If you ask me: %s",
+        "I don't know, how about %s",
+        "%s"
+    ]
+    limit = update.message.text.split("/random_song ")[1:]
+    playlist_songs = spotify.playlist_items(os.environ["PLAYLIST_ID"], limit)
+    song = random.choice(playlist_songs)
+    msg = random.choice(msgs)
+    update.message.reply_text(msg % song)
