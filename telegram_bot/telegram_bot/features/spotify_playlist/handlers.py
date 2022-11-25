@@ -13,8 +13,9 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 SCOPE = "playlist-modify-private playlist-modify-public"
-FILEPATH = os.path.dirname(__file__)
+FILEPATH = os.path.dirname(__file__) if not os.environ.get("RENDER", 0) else "/etc/secrets/"
 FILENAME = "/secret_spotify_token.json"
+
 with open(FILEPATH + FILENAME, encoding="utf-8") as spot_token:
     token_info = json.load(spot_token)
 
