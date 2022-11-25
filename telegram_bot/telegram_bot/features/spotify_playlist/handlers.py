@@ -42,16 +42,16 @@ def show_playlist(update, _):
 def random_song(update, _):
     """Handler for picking a random song"""
     msgs = [
-        "Why not listen to [%s](%s)!",
-        "Give [%s](%s) a try!",
-        "The oracle suggests [%s](%s)",
-        "All signs point to [%s](%s)",
-        "There's only one choice: [%s](%s)",
-        "Let's go with [%s](%s)",
-        "I flipped a 500 sided coin, and this was chosen: [%s](%s)",
-        "If you ask me: [%s](%s)",
-        "I don't know, how about [%s](%s)",
-        "[%s](%s)"
+        "Why not listen to %s -- %s!",
+        "Give %s a try! -- %s",
+        "The oracle suggests %s - %s",
+        "All signs point to %s -- %s",
+        "There's only one choice: %s -- %s",
+        "Let's go with %s -- %s",
+        "I flipped a 500 sided coin, and this was chosen: %s -- %s",
+        "If you ask me: %s -- %s",
+        "I don't know, how about %s -- %s",
+        "%s -- %s"
     ]
     limit = update.message.text.split("/random ")[1:]
     playlist_songs = [
