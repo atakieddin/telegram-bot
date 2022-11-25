@@ -6,7 +6,7 @@ from .features import handlers
 
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN", None)
 APP_NAME = os.environ.get("APP_NAME", None)
-BOT_PORT = int(os.environ.get("BOT_PORT", None))
+BOT_PORT = int(os.environ.get("BOT_PORT", 8443))
 
 
 class MisterRoboto:
@@ -24,7 +24,7 @@ class MisterRoboto:
         help_text = "The following commands are available:\n"
         for cmd, handler, help_txt in handlers:
             dispatcher.add_handler(CommandHandler(cmd, handler))
-            help_text += cmd + ":" + help_txt + "\n"
+            help_text += cmd + ": " + help_txt + "\n"
 
         def help_handler(update, _):
             """Sends a message when the command /help is issued."""
