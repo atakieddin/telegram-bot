@@ -61,6 +61,6 @@ def random_song(update, _):
         )
         for song_info in spotify.playlist_items("3ptj0dQmLvYYgMf81A19kl", limit=limit)["items"]
     ]
-    song = random.choice(playlist_songs)
+    song = random.choice(playlist_songs)[0]
     msg = random.choice(msgs)
     update.message.reply_text(msg % song)
