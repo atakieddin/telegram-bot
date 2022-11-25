@@ -2,8 +2,8 @@
 import os
 import json
 import logging
-import spotipy
 import random
+import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.cache_handler import MemoryCacheHandler
 
@@ -35,10 +35,12 @@ def add_song(update, _):
     update.message.reply_text("Added song to playlist!")
 
 def show_playlist(update, _):
+    """Handler for shwoing the playlist"""
     playlist = "https://open.spotify.com/playlist/3ptj0dQmLvYYgMf81A19kl?si=48b5ad8268e1435f"
     update.message.reply_text("This is the playlist: " + playlist)
 
 def random_song(update, _):
+    """Handler for picking a random song"""
     msgs = [
         "Why not listen to %s!",
         "Give %s a try!",
