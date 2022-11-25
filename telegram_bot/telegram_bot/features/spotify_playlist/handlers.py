@@ -42,16 +42,16 @@ def show_playlist(update, _):
 def random_song(update, _):
     """Handler for picking a random song"""
     msgs = [
-        "Why not listen to %s!",
-        "Give %s a try!",
-        "The oracle suggests %s",
-        "All signs point to %s",
-        "There's only one choice: %s",
-        "Let's go with %s",
-        "I flipped a 500 sided coin, and this was chosen: %s",
-        "If you ask me: %s",
-        "I don't know, how about %s",
-        "%s"
+        "Why not listen to [%s](%s)!",
+        "Give [%s](%s) a try!",
+        "The oracle suggests [%s](%s)",
+        "All signs point to [%s](%s)",
+        "There's only one choice: [%s](%s)",
+        "Let's go with [%s](%s)",
+        "I flipped a 500 sided coin, and this was chosen: [%s](%s)",
+        "If you ask me: [%s](%s)",
+        "I don't know, how about [%s](%s)",
+        "[%s](%s)"
     ]
     limit = update.message.text.split("/random ")[1:]
     playlist_songs = [
@@ -61,6 +61,6 @@ def random_song(update, _):
         )
         for song_info in spotify.playlist_items("3ptj0dQmLvYYgMf81A19kl", limit=limit)["items"]
     ]
-    song = random.choice(playlist_songs)[0]
+    song, link = random.choice(playlist_songs)
     msg = random.choice(msgs)
-    update.message.reply_text(msg % song)
+    update.message.reply_text(msg % (song, link))
