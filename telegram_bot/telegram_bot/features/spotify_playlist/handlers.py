@@ -53,7 +53,9 @@ def random_song(update, _):
         "I don't know, how about %s",
         "%s"
     ]
+    print(msgs)
     limit = update.message.text.split("/random ")[1:]
+    print(limit)
     playlist_songs = spotify.playlist_items(os.environ["PLAYLIST_ID"], limit=limit)
     print(playlist_songs)
     song = random.choice(playlist_songs)
