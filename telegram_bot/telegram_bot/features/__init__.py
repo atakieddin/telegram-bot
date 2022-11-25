@@ -5,5 +5,5 @@ handlers = [
     # ( cmd, handler, help)
     ("add", add_song, "Add songs to Spotify playlist"),
     ("show", show_playlist, "Show the current playlist"),
-    ("random_song", random_song, "Pick random song from playlist")
+    ("random", random_song, "Pick random song from playlist")
 ]
