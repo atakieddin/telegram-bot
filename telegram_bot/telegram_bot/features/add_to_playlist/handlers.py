@@ -6,7 +6,7 @@ from .spotify_playlist import utils as spot_utils
 
 def add_song(update, _):
     """Add song to playlist after determining type"""
-    url = update.message.text.split("/add ")[1:]
+    url = update.message.text.split("/add ")[1:][0]
     # Determine type of url
     if "spotify" not in url:
         msg = "This doesn't look like a spotify URL, adding the closest song I could find: "
