@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 def add_song(update, _):
     """Add song to playlist after determining type"""
     url = update.message.text.split("/add ")[1:][0]
+    logger.debug("Do we get here?")
     # Determine type of url
     if "spotify" not in url:
         msg = "This doesn't look like a spotify URL, adding the closest song I could find: "
@@ -20,18 +21,18 @@ def add_song(update, _):
         artist = yt_details['author']
         title = yt_details['title']
         
-        logging.debug("This is the artist and the title: %s, %s", artist, title)
+        logger.debug("This is the artist and the title: %s, %s", artist, title)
 
         spotify_url = spot_utils.get_song(artist=artist, title=title)
         msg = "This looks like a youtube URL, adding the closest song I could find: " + spotify_url
 
-        logging.debug("This is the spotify_url %s", spotify_url)
+        logger.debug("This is the spotify_url %s", spotify_url)
 
     else:
         spotify_url = url
         msg = "Added song to playlist!"
 
-    logging.debug("We are about to add it")
+    logger.debug("We are about to add it")
     spot_utils.add_song(song=spotify_url)
 
     update.message.reply_text(msg)
