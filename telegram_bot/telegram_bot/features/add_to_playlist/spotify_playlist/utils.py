@@ -1,7 +1,6 @@
 """Handlers file for Spotify Playlist interaction"""
 import os
 import json
-import logging
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.cache_handler import MemoryCacheHandler
