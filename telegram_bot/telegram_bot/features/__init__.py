@@ -1,5 +1,5 @@
 """Collection of hander feature"""
-from .add_music.handlers import add_song
+from telegram_bot.features.add_music.handlers import add_song
 
 handlers = [
     # ( cmd, handler, help)

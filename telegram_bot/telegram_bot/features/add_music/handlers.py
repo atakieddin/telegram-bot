@@ -6,7 +6,6 @@ from telegram_bot.features.add_music.spotify_playlist import utils as spot_utils
 def add_song(update, _):
     """Add song to playlist after determining type"""
     url = update.message.text.split("/add ")[1:][0]
-    logger.debug("But do we get here?")
     # Determine type of url
     if "spotify" not in url:
         msg = "This doesn't look like a spotify URL, adding the closest song I could find: "
@@ -24,6 +23,7 @@ def add_song(update, _):
         spotify_url = url
         msg = "Added song to playlist!"
 
+    logger.debug("This is the spotify url we have: %s", spotify_url)
     spot_utils.add_song(song=spotify_url)
 
     update.message.reply_text(msg)
