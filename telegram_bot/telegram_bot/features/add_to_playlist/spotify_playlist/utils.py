@@ -27,8 +27,12 @@ token = SpotifyOAuth(
 spotify = spotipy.Spotify(auth_manager=token, requests_timeout=15, retries=10)
 
 
-def add_song(update, _):
-    """Handler for adding songs"""
-    song = update.message.text.split("/add ")[1:]
+def get_song(artist, title):
+    """Handler for getting song"""
+    results = spotify.search(q='artist:' + artist + " track:" + title, type='track')
+    spotify_url = results['tracks']['items'][0]['external_urls']['spotify']
+    return spotify_url
+
+def add_song(song):
+    """Add a song to the spotify playlist"""
     spotify.playlist_add_items(os.environ["PLAYLIST_ID"], song)
-    update.message.reply_text("Added song to playlist!")

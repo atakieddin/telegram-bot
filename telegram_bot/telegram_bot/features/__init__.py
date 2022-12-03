@@ -1,5 +1,5 @@
 """Collection of hander feature"""
-from .spotify_playlist.handlers import add_song
+from .add_to_playlist.handlers import add_song
 
 handlers = [
     # ( cmd, handler, help)
