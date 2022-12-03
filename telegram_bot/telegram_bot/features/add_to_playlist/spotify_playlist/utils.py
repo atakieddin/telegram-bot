@@ -6,12 +6,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.cache_handler import MemoryCacheHandler
 
-# Enables logging
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
-)
 
-logger = logging.getLogger(__name__)
 SCOPE = "playlist-modify-private playlist-modify-public"
 FILEPATH = os.path.dirname(__file__) if not os.environ.get("RENDER", 0) else "/etc/secrets/"
 FILENAME = "/secret_spotify_token.json"

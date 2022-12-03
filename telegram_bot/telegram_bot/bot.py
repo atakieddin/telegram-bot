@@ -1,5 +1,6 @@
 """Main bot that has the features"""
 import os
+import logging
 from telegram.ext import Updater, CommandHandler
 
 from .features import handlers
@@ -8,6 +9,13 @@ TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN", None)
 APP_NAME = os.environ.get("APP_NAME", None)
 BOT_PORT = int(os.environ.get("BOT_PORT", 8443))
 
+
+# Enables logging
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.DEBUG
+)
+
+logger = logging.getLogger(__name__)
 
 class MisterRoboto:
     """The Robot himself"""
