@@ -33,7 +33,14 @@ class MisterRoboto:
             logger.debug("Calling helper")
             update.message.reply_text(help_text)
 
+        def error(update, context):
+            """Log Errors caused by Updates."""
+            logger.warning('Update "%s" caused error "%s"', update, context.error)
+
+
         dispatcher.add_handler(CommandHandler("help", help_handler))
+        dispatcher.add_error_handler(error)
+
 
         updater.start_webhook(
             listen="0.0.0.0",
