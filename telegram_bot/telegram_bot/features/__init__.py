@@ -1,5 +1,5 @@
 """Collection of hander feature"""
-from .spotify_playlist.handlers import add_song, show_playlist, random_song
+from telegram_bot.features.add_music.handlers import add_song, show_playlist, random_song
 
 handlers = [
     # ( cmd, handler, help)

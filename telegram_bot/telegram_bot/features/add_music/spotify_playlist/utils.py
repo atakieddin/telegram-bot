@@ -1,18 +1,12 @@
 """Handlers file for Spotify Playlist interaction"""
 import os
 import json
-import logging
 import random
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.cache_handler import MemoryCacheHandler
 
-# Enables logging
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
-)
 
-logger = logging.getLogger(__name__)
 SCOPE = "playlist-modify-private playlist-modify-public"
 FILEPATH = os.path.dirname(__file__) if not os.environ.get("RENDER", 0) else "/etc/secrets/"
 FILENAME = "/secret_spotify_token.json"
@@ -28,18 +22,22 @@ token = SpotifyOAuth(
 spotify = spotipy.Spotify(auth_manager=token, requests_timeout=15, retries=10)
 
 
-def add_song(update, _):
-    """Handler for adding songs"""
-    song = update.message.text.split("/add ")[1:]
-    spotify.playlist_add_items(os.environ["PLAYLIST_ID"], song)
-    update.message.reply_text("Added song to playlist!")
+def get_song(artist, title):
+    """Handler for getting song"""
+    results = spotify.search(q='artist:' + artist + " track:" + title, type='track')
+    spotify_url = results['tracks']['items'][0]['external_urls']['spotify']
+    return spotify_url
 
-def show_playlist(update, _):
+def add_song(song):
+    """Add a song to the spotify playlist"""
+    spotify.playlist_add_items(os.environ["PLAYLIST_ID"], [song])
+
+def show_playlist(update):
     """Handler for shwoing the playlist"""
     playlist = "https://open.spotify.com/playlist/3ptj0dQmLvYYgMf81A19kl?si=48b5ad8268e1435f"
     update.message.reply_text("This is the playlist: " + playlist)
 
-def random_song(update, _):
+def random_song(update):
     """Handler for picking a random song"""
     msgs = [
         "Why not listen to %s -- %s!",
