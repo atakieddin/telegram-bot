@@ -39,7 +39,6 @@ class MisterRoboto:
             update.message.reply_text(help_text)
 
         dispatcher.add_handler(CommandHandler("help", help_handler))
-        logger.debug("Do we get here?")
 
         updater.start_webhook(
             listen="0.0.0.0",
