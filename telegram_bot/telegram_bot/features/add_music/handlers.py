@@ -4,9 +4,11 @@ from telegram_bot.features.add_music.youtube_music import utils as yt_utils
 from telegram_bot.features.add_music.spotify_playlist import utils as spot_utils
 
 def random_song(update, _):
+    """Get a random spotify song"""
     return spot_utils.random_song(update)
 
 def show_playlist(update, _):
+    """Show the current spotify playlist"""
     return spot_utils.show_playlist(update)
 
 def add_song(update, _):

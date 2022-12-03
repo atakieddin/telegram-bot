@@ -28,6 +28,10 @@ def get_song(artist, title):
     spotify_url = results['tracks']['items'][0]['external_urls']['spotify']
     return spotify_url
 
+def add_song(song):
+    """Add a song to the spotify playlist"""
+    spotify.playlist_add_items(os.environ["PLAYLIST_ID"], [song])
+
 def show_playlist(update):
     """Handler for shwoing the playlist"""
     playlist = "https://open.spotify.com/playlist/3ptj0dQmLvYYgMf81A19kl?si=48b5ad8268e1435f"
