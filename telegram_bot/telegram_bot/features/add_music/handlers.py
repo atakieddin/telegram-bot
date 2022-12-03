@@ -1,14 +1,7 @@
 """Add music to playlist"""
-import logging
+from telegram_bot.logger import logger
 from telegram_bot.features.add_music.youtube_music import utils as yt_utils
 from telegram_bot.features.add_music.spotify_playlist import utils as spot_utils
-
-# Enables logging
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.DEBUG
-)
-
-logger = logging.getLogger(__name__)
 
 def add_song(update, _):
     """Add song to playlist after determining type"""

@@ -1,21 +1,15 @@
 """Main bot that has the features"""
 import os
-import logging
 from telegram.ext import Updater, CommandHandler
 
-from .features import handlers
+from telegram_bot.logger import logger
+from telegram_bot.features import handlers
 
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN", None)
 APP_NAME = os.environ.get("APP_NAME", None)
 BOT_PORT = int(os.environ.get("BOT_PORT", 8443))
 
 
-# Enables logging
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.DEBUG
-)
-
-logger = logging.getLogger(__name__)
 
 class MisterRoboto:
     """The Robot himself"""
@@ -36,6 +30,7 @@ class MisterRoboto:
 
         def help_handler(update, _):
             """Sends a message when the command /help is issued."""
+            logger.debug("Calling helper")
             update.message.reply_text(help_text)
 
         dispatcher.add_handler(CommandHandler("help", help_handler))
@@ -46,4 +41,5 @@ class MisterRoboto:
             url_path=TELEGRAM_TOKEN,
             webhook_url=APP_NAME + TELEGRAM_TOKEN,
         )
+        logger.debug("We are about to idle")
         updater.idle()
