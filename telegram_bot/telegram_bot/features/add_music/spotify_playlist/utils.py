@@ -29,4 +29,4 @@ def get_song(artist, title):
 
 def add_song(song):
     """Add a song to the spotify playlist"""
-    spotify.playlist_add_items(os.environ["PLAYLIST_ID"], song)
+    spotify.playlist_add_items(os.environ["PLAYLIST_ID"], [song])
